@@ -11,6 +11,12 @@ app.use('/about', function(req, res){
 app.use('/query', function(req, res){
     res.send('id: ' + req.query.id);
 });
+app.use('/greeting', function(req, res){
+        res.render('about', {
+        message: 'welcome',
+        style: req.query.id,
+        });
+    });
 app.get('/error', function(req, res){
     res.status(500),
     res.render('error')
