@@ -5,6 +5,13 @@ app.set('view engine', 'pug')
 app.set('views','./views')
 app.set('port', process.env.PORT || 3000);
 
+app.get('/headers', function(req,res){
+    res.set('Content-Type','text/plain');
+    var s = '';
+    for(var name in req.headers) s += name + ': ' + req.headers[name] + '\n';
+    res.send(s);
+    });
+
 app.use('/about', function(req, res){
     res.render('index', { title: 'Hey', message: 'Hello there!' })
 });
@@ -21,12 +28,6 @@ app.get('/error', function(req, res){
     res.status(500),
     res.render('error')
 })
-// custom 404 page
-app.use(function(req, res){
-res.type('text/plain');
-res.status(404);
-res.send('404 - Not dskdlskdlsk');
-});
 // custom 500 page
 app.use(function(err, req, res, next){
 console.error(err.stack);
