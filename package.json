@@ -4,6 +4,7 @@
   "description": "my first node app",
   "main": "app.js",
   "dependencies": {
+    "body-parse": "^0.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express3-handlebars": "^0.5.2",
