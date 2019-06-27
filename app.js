@@ -1,6 +1,13 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
+var low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync('db.json')
+db=low(adapter)
+db.defaults({ users: [] })
+  .write()
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -18,7 +25,7 @@ var users=[
 ]
 app.get('/user',function(req,res){
     res.render('list/listuser',{
-        user:users
+        user:db.get('users').value()
     })
 })
 app.get('/test',function(req,res){
@@ -38,9 +45,9 @@ app.get('/', function(req,res){
 app.get('/user/create',function(req,res){
     res.render('users/index')
 })
+// make a form with post method and save low database
 app.post('/user/create',function(req,res){
-    res.render('users/index')
-    users.push(req.body);
+    db.get('users').push(req.body).write();
     res.redirect('/user');
 })
 app.listen(app.get('port'), function(){

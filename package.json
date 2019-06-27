@@ -9,6 +9,7 @@
     "express": "^4.16.4",
     "express3-handlebars": "^0.5.2",
     "lodash": "^4.17.11",
+    "lowdb": "^1.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.5.7",
     "pug": "^2.0.4"
