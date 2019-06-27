@@ -18,23 +18,22 @@ bodyParser = require('body-parser');
 app.set('view engine', 'pug')
 app.set('views','./views')
 app.set('port', process.env.PORT || 3000);
-var users=[
-   {id:1 , name:'Vinh'},
-   {id:2, name:'Thinh'},
-   {id:3, name:'Lam'}
-]
 app.get('/user',function(req,res){
     res.render('list/listuser',{
         user:db.get('users').value()
     })
 })
 app.get('/test',function(req,res){
-    var filtered=_.filter(users,e=>
-            _.includes(e.name,req.query.q)
+    var users = db.get('users').value()
+    var filtered=_.filter(users,e =>
+        (_.includes(e.id,req.query.q) || _.includes(e.name,req.query.w))
     )
+
     res.render('list/listuser',{
         user:filtered
     })
+    console.log(filtered)
+    console.log(users)
 })
 app.get('/', function(req,res){
     res.set('Content-Type','text/plain');

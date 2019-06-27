@@ -1,7 +1,10 @@
 a(href='user/create') new
 form(action='/test', method='GET')
   input(type='text',name='q')
-  button Search
+  button Search Id
+form(action='/test', method='GET')
+  input(type='text',name='w')
+  button Search Name
 ul
   each e in user
     li=e.id + ' :' + e.name
