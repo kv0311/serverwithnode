@@ -6,7 +6,7 @@
   "dependencies": {
     "body-parse": "^0.1.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express3-handlebars": "^0.5.2",
     "lodash": "^4.17.11",
     "lowdb": "^1.0.0",
